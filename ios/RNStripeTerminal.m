@@ -211,10 +211,11 @@ RCT_EXPORT_METHOD(installUpdate) {
 }
 
 - (NSDictionary *)serializeUpdate:(SCPReaderSoftwareUpdate *)update {
-    return @{
-             @"estimatedUpdateTime": [SCPReaderSoftwareUpdate stringFromUpdateTimeEstimate:update.estimatedUpdateTime],
-             @"deviceSoftwareVersion": update.deviceSoftwareVersion ? update.deviceSoftwareVersion : @""
-             };
+    NSDictionary * updateDictionary = @{@"update" : @{
+        @"estimatedUpdateTime": [SCPReaderSoftwareUpdate stringFromUpdateTimeEstimate:update.estimatedUpdateTime],
+        @"deviceSoftwareVersion": update.deviceSoftwareVersion ? update.deviceSoftwareVersion : @""
+    }};
+  return updateDictionary;
 }
 
 - (NSDictionary *)serializePaymentIntent:(SCPPaymentIntent *)intent {
